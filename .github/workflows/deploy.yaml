@@ -1,0 +1,23 @@
+name: build-projects-dev
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  build-library-360:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+    - name: Install Project
+      run: npm ci
+    - name: Copy Lib to deploy folder
+      run: npm run build && cp dist/*.js demo/
+      shell: bash
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./demo

@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Buttons with Images</title>
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+            }
+
+            .button {
+                display: inline-block;
+                margin: 10px;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                background-color: #eee;
+                cursor: pointer;
+                flex: 1;
+            }
+            .button img {
+                width: 30%;
+                height: 200px;
+                margin-right: 10px;
+                vertical-align: middle;
+            }
+        </style>
+
+        <script type="module" src="lib/main.js"></script>
+    </head>
+    <body>
+        <button class="button" id="button1"><img src="./img/helmet1.png"></button>
+        <button class="button" id="button2"><img src="./img/helmet2.png"></button>
+        <button class="button" id="button3"><img src="./img/helmet3.png"></button>
+
+        <script>
+            const button1 = document.getElementById('button1');
+            const button2 = document.getElementById('button2');
+            const button3 = document.getElementById('button3');
+
+            button1.addEventListener('click', () => {
+                window.webxrWebAR.parent.changeModel({index: 1},"helmet");                    
+            });
+
+            button2.addEventListener('click', () => {
+                window.webxrWebAR.parent.changeModel({index: 1},"helmet-red-war");                    
+            });
+
+            button3.addEventListener('click', () => {
+                window.webxrWebAR.parent.changeModel({index: 1},"helmetv2");                    
+            });
+        </script>
+    </body>
+</html>
