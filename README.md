@@ -11,16 +11,16 @@ This library is intended to be imported in the html files that will be embedded 
 
 - Import the script in your html file
 
-`<script src="https://arleneio.github.io/webar-iframe-api/webxr-WebAR.umd.js"></script>`
+`<script src="https://arleneio.github.io/webar-iframe-api/webxr-webAR.umd.js"></script>`
 
-- When you import the `webxr-WebAR.js` script in your html, you will have an object you could access using `window.webxrWebAR`
+- When you import the `webxr-webAR.js` script in your html, you will have an object you could access using `window.webxrWebAR`
 
 
 ## Setting up the library from our package:
 
 - Import the package directly in your component:
 
-`import { parent, child } from 'https://arleneio.github.io/webar-iframe-api/webxr-WebAR.es.js'`
+`import { parent, child } from 'https://arleneio.github.io/webar-iframe-api/webxr-webAR.es.js'`
 
 `child` is your page used when you want it to communicate with an embbedded webAR experience
 and `parent` when your page is embbedded inside it.
