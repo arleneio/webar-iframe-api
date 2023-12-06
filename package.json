@@ -1,10 +1,13 @@
 {
   "name": "webar-iframe-api",
   "version": "1.0.0",
-  "description": "API library to comminucate with 360 projects from embedded iFrames",
-  "files":["dist"],
-  "main":"./dist/webxr-WebAR.umd.js",
-  "module":"./dist/webxr-WebAR.es.js",
+  "description": "API library to comminicate with WebAR projects from embedded iFrames",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "./dist/webxr-WebAR.umd.js",
+  "module": "./dist/webxr-WebAR.es.js",
   "exports": {
     ".": {
       "import": "./dist/webxr-WebAR.es.js",
@@ -26,6 +29,6 @@
   },
   "homepage": "https://github.com/arleneio/webar-iframe-api#readme",
   "devDependencies": {
-    "vite": "^4.0.2"
+    "vite": "^5.0.6"
   }
 }

@@ -1,4 +1,4 @@
-name: build-projects-dev
+name: build-webar-iframe-lib
 
 on:
   push:
