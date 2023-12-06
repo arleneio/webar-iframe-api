@@ -2,7 +2,7 @@
 <html style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba</title>
+    <title>WebAr Iframe API Demo</title>
     
     <style>
         .btns {
@@ -18,57 +18,44 @@
         }
     </style>
 
-    <!-- For build testing: <script src="dist/arlene-360.umd.js"></script> -->
-    <script src="./arlene-360.umd.js"></script>
-
+    <script src="./webxr-webAR.umd.js"></script>
     
     <script>
-        function hideIntro(idIframe) {
-            // If you only have one iframe you could call window.arlene360.arleneFrame directly
-            // but if you have more than one so this is not posible since the library does not know
-            // which iFrame do you want to send command to
-            //window.arlene360.child.closeIntro()
 
-            Array.from(document.getElementsByClassName("ht"+idIframe)).forEach(crt => crt.disabled = false);
-            document.getElementById('frame'+idIframe).arlene360.child.closeIntro();            
+        const models = ['helmet.glb','helmet-red-war.glb','helmetv2.glb']
+        let crtModels = [0,0]
+
+        const sizes = ['0.05 0.05 0.05','0.1 0.1 0.1', '0.15 0.15 0.15']
+        let crtSizes = [0,0]
+
+        function toggleModel(idIframe) {
+            let currentId = crtModels[idIframe-1]
+            crtModels[idIframe-1] = (currentId+1)%3
+
+            document.getElementById('frame'+idIframe).webxrWebAR.child.changeModel({index: 1},models[crtModels[idIframe-1]]);    
         }
-        function changeScene(idIframe) {
-            document.getElementById('frame'+idIframe).arlene360.child.gotoScene('Scene 2')            
+
+        function toggleSize(idIframe) {
+            //Array.from(document.getElementsByClassName("ht"+idIframe)).forEach(crt => crt.disabled = false);
+
+            let currentId = crtSizes[idIframe-1]
+            crtSizes[idIframe-1] = (currentId+1)%3
+
+            document.getElementById('frame'+idIframe).webxrWebAR.child.changeModel({index: 1, property:'scale'},sizes[crtSizes[idIframe-1]]);       
         }
-        function hideHotspot(idIframe) {
-            document.getElementById('frame'+idIframe).arlene360.child.hideById('hotspot-60598');            
-        }
-        function gotoView(idIframe) {
-            document.getElementById('frame'+idIframe).arlene360.child.gotoView('View 1');            
-        }
-        function setCameraDirection(idIframe) {
-            document.getElementById('frame'+idIframe).arlene360.child.setCameraDirection({fov: 1.5687508960985865, pitch: -0.9782468999988296,yaw: -1.5347931991094406});            
-        }
-        
+       
 
     </script>
 </head>
 <body style="background-color:#FFFFFF; padding-top:80px; ">
     <div class="btns">
-        <button class="btn" onclick="hideIntro(1)">Hide Intro in 1</button>
-        <button class="btn" onclick="hideIntro(2)">Hide Intro in 2</button>        
+        <button class="btn" onclick="toggleModel(1)">Toggle Model in 1</button>
+        <button class="btn" onclick="toggleModel(2)">Toggle Model in 2</button>        
     </div>
-    <div class="btns">
-        <button class="btn ht1" onclick="gotoView(1)" disabled>Go To View</button>        
-        <button class="btn ht2" onclick="gotoView(2)" disabled>Go To View</button>        
-    </div>
-    <div class="btns">
-        <button class="btn ht1" onclick="hideHotspot(1)" disabled>Hide Hotspot in 1</button>
-        <button class="btn ht2" onclick="hideHotspot(2)" disabled>Hide Hotspot in 2</button>        
-    </div>
-    <div class="btns">
-        <button class="btn ht1" onclick="changeScene(1)" disabled>Change Scene in 1</button>
-        <button class="btn ht2" onclick="changeScene(2)" disabled>Change Scene in 2</button>        
-    </div>
-    <div class="btns">
-        <button class="btn ht1" onclick="setCameraDirection(1)" disabled>Set camera direction</button>        
-        <button class="btn ht2" onclick="setCameraDirection(2)" disabled>Set camera direction</button>        
-    </div>
-   <iframe id="frame1" src="https://showroom.arlene.io/dev/arlene/views/" width="500" height="400" frameborder="0"></iframe>
-   <iframe id="frame2" src="https://showroom.arlene.io/dev/arlene/views/" width="500" height="400" frameborder="0"></iframe>
+    <!--div class="btns">
+        <button class="btn ht1" onclick="toggleSize(1)">Toggle Size</button>        
+        <button class="btn ht2" onclick="toggleSize(2)">Toggle Size</button>        
+    </div-->    
+    <iframe id="frame1" src="https://ar.webxr.tools/arlene/webar-demo-friday/" allow="fullscreen; payment; camera *; accelerometer *; gyroscope *; microphone *; vr; xr; accelerometer; magnetometer; webvr;webxr;" width="500" height="400" frameborder="0"></iframe>
+    <iframe id="frame2" src="https://ar.webxr.tools/arlene/webar-demo-friday/" allow="fullscreen; payment; camera *; accelerometer *; gyroscope *; microphone *; vr; xr; accelerometer; magnetometer; webvr;webxr;" width="500" height="400" frameborder="0"></iframe>
 </html>
